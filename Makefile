@@ -28,7 +28,7 @@ deploy-anvil:
 
 deploy:
 	@eval $$(curl -H "x-auth-token: $${BPT_SERVICE_TOKEN}" -s $${BTP_CLUSTER_MANAGER_URL}/ide/foundry/$${BTP_SCS_ID}/env | sed 's/^/export /')
-	@if [ -z "${PRIVATE_KEY}" ]; then \
+	@if [ -z "${BTP_PRIVATE_KEY}" ]; then \
 		if [ -z "${BTP_GAS_PRICE}" ]; then \
 			forge create ./src/Counter.sol:Counter ${EXTRA_ARGS} --rpc-url ${BTP_RPC_URL} --interactive | tee deployment.txt; \
 		else \
@@ -36,9 +36,9 @@ deploy:
 		fi; \
 	else \
 		if [ -z "${BTP_GAS_PRICE}" ]; then \
-			forge create ./src/Counter.sol:Counter ${EXTRA_ARGS} --rpc-url ${BTP_RPC_URL} --private-key ${PRIVATE_KEY} | tee deployment.txt; \
+			forge create ./src/Counter.sol:Counter ${EXTRA_ARGS} --rpc-url ${BTP_RPC_URL} --private-key ${BTP_PRIVATE_KEY} | tee deployment.txt; \
 		else \
-			forge create ./src/Counter.sol:Counter ${EXTRA_ARGS} --rpc-url ${BTP_RPC_URL} --private-key ${PRIVATE_KEY} --gas-price ${BTP_GAS_PRICE} | tee deployment.txt; \
+			forge create ./src/Counter.sol:Counter ${EXTRA_ARGS} --rpc-url ${BTP_RPC_URL} --private-key ${BTP_PRIVATE_KEY} --gas-price ${BTP_GAS_PRICE} | tee deployment.txt; \
 		fi; \
 	fi
 
@@ -55,7 +55,7 @@ script:
 		exit 1; \
 	fi
 	@eval $$(curl -H "x-auth-token: $${BPT_SERVICE_TOKEN}" -s $${BTP_CLUSTER_MANAGER_URL}/ide/foundry/$${BTP_SCS_ID}/env | sed 's/^/export /')
-	@if [ -z "${PRIVATE_KEY}" ]; then \
+	@if [ -z "${BTP_PRIVATE_KEY}" ]; then \
 		echo "\033[1;33mWARNING: No keys are activated on the node, falling back to interactive mode...\033[0m"; \
 		echo ""; \
 		@DEPLOYED_ADDRESS=$$(grep "Deployed to:" deployment.txt | awk '{print $$3}') forge script script/Counter.s.sol:CounterScript ${EXTRA_ARGS} --rpc-url ${BTP_RPC_URL} -i=1; \
