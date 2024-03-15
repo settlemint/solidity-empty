@@ -29,11 +29,17 @@ deploy-anvil:
 deploy:
 	@eval $$(curl -H "x-auth-token: $${BPT_SERVICE_TOKEN}" -s $${BTP_CLUSTER_MANAGER_URL}/ide/foundry/$${BTP_SCS_ID}/env | sed 's/^/export /')
 	@if [ -z "${ETH_FROM}" ]; then \
-		echo "\033[1;33mWARNING: No keys are activated on the node, falling back to interactive mode...\033[0m"; \
-		echo ""; \
-		forge create ./src/Counter.sol:Counter ${EXTRA_ARGS} --rpc-url ${BTP_RPC_URL} --interactive | tee deployment.txt; \
+		if [ -z "${BTP_GAS_PRICE}" ]; then \
+			forge create ./src/Counter.sol:Counter ${EXTRA_ARGS} --rpc-url ${BTP_RPC_URL} --interactive | tee deployment.txt; \
+		else \
+			forge create ./src/Counter.sol:Counter ${EXTRA_ARGS} --rpc-url ${BTP_RPC_URL} --interactive --gas-price ${BTP_GAS_PRICE} | tee deployment.txt; \
+		fi; \
 	else \
-		forge create ./src/Counter.sol:Counter ${EXTRA_ARGS} --rpc-url ${BTP_RPC_URL} --unlocked | tee deployment.txt; \
+		if [ -z "${BTP_GAS_PRICE}" ]; then \
+			forge create ./src/Counter.sol:Counter ${EXTRA_ARGS} --rpc-url ${BTP_RPC_URL} --unlocked | tee deployment.txt; \
+		else \
+			forge create ./src/Counter.sol:Counter ${EXTRA_ARGS} --rpc-url ${BTP_RPC_URL} --unlocked --gas-price ${BTP_GAS_PRICE} | tee deployment.txt; \
+		fi; \
 	fi
 
 script-anvil:
