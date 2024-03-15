@@ -99,7 +99,7 @@ jobs:
             type=semver,pattern={{major}}
             type=sha
 
-      - name: Build and push amd64
+      - name: Build and push
         uses: docker/build-push-action@v5
         with:
           load: false
