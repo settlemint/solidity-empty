@@ -67,12 +67,6 @@
       "problemMatcher": []
     },
     {
-      "label": "subgraph",
-      "type": "shell",
-      "command": "make subgraph",
-      "problemMatcher": []
-    },
-    {
       "label": "help",
       "type": "shell",
       "command": "make help",
