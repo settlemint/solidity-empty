@@ -43,7 +43,7 @@
       "problemMatcher": []
     },
     {
-      "label": "deploy",
+      "label": "deploy-btp",
       "type": "shell",
       "command": "EXTRA_ARGS=\"${input:extra-deployment-verify} ${input:extra-deployment-other}\" make deploy",
       "problemMatcher": []
@@ -58,12 +58,6 @@
       "label": "script",
       "type": "shell",
       "command": "EXTRA_ARGS=\"${input:extra-script-broadcast} ${input:extra-script-other}\" make script",
-      "problemMatcher": []
-    },
-    {
-      "label": "cast",
-      "type": "shell",
-      "command": "make cast",
       "problemMatcher": []
     },
     {
