@@ -38,4 +38,4 @@ jobs:
       ANVIL_TESTS_PRIVATE_KEY: ${{ secrets.ANVIL_TESTS_PRIVATE_KEY }}
     with:
       docker-image-name: solidity-empty
-      runs-on: ubuntu-latest
+      runs-on: foundry
