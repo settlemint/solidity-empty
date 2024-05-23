@@ -32,7 +32,7 @@ permissions:
 jobs:
   ci:
     name: CI
-    uses: settlemint/smart-contracts-actions/.github/workflows/solidity.yml
+    uses: settlemint/smart-contracts-actions/.github/workflows/solidity.yml@main
     secrets:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ANVIL_TESTS_PRIVATE_KEY: ${{ secrets.ANVIL_TESTS_PRIVATE_KEY }}
