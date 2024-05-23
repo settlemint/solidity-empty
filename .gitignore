@@ -34,6 +34,7 @@ docs/
 # Subgraphs
 deployment.txt
 deployment-anvil.txt
+deployment-hardhat.txt
 subgraph/subgraph.config.json
 subgraph/node_modules
 subgraph/generated
