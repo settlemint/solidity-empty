@@ -34,7 +34,7 @@ jobs:
     name: CI
     uses: settlemint/smart-contracts-actions/.github/workflows/solidity.yml@main
     secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ANVIL_TESTS_PRIVATE_KEY: ${{ secrets.ANVIL_TESTS_PRIVATE_KEY }}
     with:
       docker-image-name: solidity-empty
