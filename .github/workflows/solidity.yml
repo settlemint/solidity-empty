@@ -36,6 +36,7 @@ jobs:
     secrets:
       TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ANVIL_TESTS_PRIVATE_KEY: ${{ secrets.ANVIL_TESTS_PRIVATE_KEY }}
+      AIKIDO_SECRET_KEY: ${{ secrets.AIKIDO_SECRET_KEY }}
     with:
       docker-image-name: solidity-empty
       runs-on: foundry
