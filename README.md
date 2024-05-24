@@ -25,6 +25,12 @@ Foundry consists of:
 
 **Hardhat is a Flexible, Extensible, Fast Ethereum development environment for professionals in typescript**
 
+Hardhat consists of:
+
+- **Hardhat Runner**: Hardhat Runner is the main component you interact with when using Hardhat. It's a flexible and extensible task runner that helps you manage and automate the recurring tasks inherent to developing smart contracts and dApps.
+- **Hardhat Ignition**: Declarative deployment system that enables you to deploy your smart contracts without navigating the mechanics of the deployment process.
+- **Hardhat Network**: Declarative deployment system that enables you to deploy your smart contracts without navigating the mechanics of the deployment process.
+
 ## Documentation
 
 - https://console.settlemint.com/documentation/docs/using-platform/integrated-development-environment/
