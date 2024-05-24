@@ -16,7 +16,7 @@ const config: HardhatUserConfig = {
   networks: {
     hardhat: {},
     btp: {
-      url: process.env.BTP_RPC_URL!,
+      url: process.env.BTP_RPC_URL || "",
       gasPrice: process.env.BTP_GAS_PRICE ? parseInt(process.env.BTP_GAS_PRICE) : "auto",
     },
   },

@@ -2,9 +2,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build",
+      "label": "Foundry - Build",
       "type": "shell",
-      "command": "make build",
+      "command": "make forge-build",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -12,58 +12,69 @@
       "problemMatcher": []
     },
     {
-      "label": "test",
+      "label": "Hardhat - Build",
       "type": "shell",
-      "command": "make test",
+      "command": "make hardhat-build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Foundry - Test",
+      "type": "shell",
+      "command": "make forge-test",
       "group": "test",
       "problemMatcher": []
     },
     {
-      "label": "format",
+      "label": "Hardhat - Test",
       "type": "shell",
-      "command": "make format",
+      "command": "make hardhat-test",
+      "group": "test",
       "problemMatcher": []
     },
     {
-      "label": "snapshot",
+      "label": "Foundry - Format",
       "type": "shell",
-      "command": "make snapshot",
+      "command": "make forge-format",
       "problemMatcher": []
     },
     {
-      "label": "anvil",
+      "label": "Foundry - Start network",
       "type": "shell",
-      "command": "make anvil",
+      "command": "make anvil-network",
       "problemMatcher": []
     },
     {
-      "label": "deploy-anvil",
+      "label": "Hardhat - Start network",
       "type": "shell",
-      "command": "make deploy-anvil",
+      "command": "make hardhat-network",
       "problemMatcher": []
     },
     {
-      "label": "deploy-btp",
+      "label": "Foundry - Deploy to local network",
       "type": "shell",
-      "command": "EXTRA_ARGS=\"${input:extra-deployment-verify} ${input:extra-deployment-other}\" make deploy-btp",
+      "command": "make forge-deploy-to-local-network",
       "problemMatcher": []
     },
     {
-      "label": "script-anvil",
+      "label": "Hardhat - Deploy to local network",
       "type": "shell",
-      "command": "EXTRA_ARGS=\"${input:extra-script-broadcast} ${input:extra-script-other}\" make script-anvil",
+      "command": "make hardhat-deploy-to-local-network",
       "problemMatcher": []
     },
     {
-      "label": "script",
+      "label": "Foundry - Deploy to platform network",
       "type": "shell",
-      "command": "EXTRA_ARGS=\"${input:extra-script-broadcast} ${input:extra-script-other}\" make script",
+      "command": "EXTRA_ARGS=\"${input:extra-deployment-verify} ${input:extra-deployment-other}\" make forge-deploy-to-btp-network",
       "problemMatcher": []
     },
     {
-      "label": "help",
+      "label": "Hardhat - Deploy to platform network",
       "type": "shell",
-      "command": "make help",
+      "command": "make hardhat-deploy-to-btp-network",
       "problemMatcher": []
     }
   ],

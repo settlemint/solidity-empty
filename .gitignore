@@ -41,3 +41,4 @@ subgraph/generated
 subgraph/build
 
 .pnpm
+/deployments
