@@ -23,6 +23,8 @@ Foundry consists of:
 - **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
 - **Chisel**: Fast, utilitarian, and verbose solidity REPL.
 
+**Hardhat is a Flexible, Extensible, Fast Ethereum development environment for professionals in typescript**
+
 ## Documentation
 
 - https://console.settlemint.com/documentation/docs/using-platform/integrated-development-environment/
