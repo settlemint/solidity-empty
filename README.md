@@ -12,7 +12,7 @@ If you want to use it separately, bootstrap a new project using
 forge init my-erc20-token --template settlemint/solidity-token-erc20
 ```
 
-## DX: Foundry
+## DX: Foundry & Hardhat hybrid
 
 **Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
 
