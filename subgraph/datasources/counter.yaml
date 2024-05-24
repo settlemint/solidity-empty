@@ -10,10 +10,10 @@
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
-        - ForwCounterarder
+        - Counter
       abis:
         - name: Counter
-          file: {root}/../out/Counter.sol/Counter.json
+          file: "{root}/out/Counter.sol/Counter.json"
       eventHandlers:
         - event: CounterIncremented(indexed uint256)
           handler: handleCounterIncremented

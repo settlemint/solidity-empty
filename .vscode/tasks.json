@@ -80,6 +80,11 @@
   ],
   "inputs": [
     {
+      "id": "contract-address",
+      "description": "Contract address",
+      "type": "promptString"
+    },
+    {
       "id": "extra-deployment-verify",
       "description": "Extra deployment options?",
       "default": "",

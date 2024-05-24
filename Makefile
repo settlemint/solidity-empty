@@ -1,6 +1,8 @@
 .PHONY: hardhat-build hardhat-test hardhat-format hardhat-snapshot anvil-network hardhat-network forge-build forge-test forge-format forge-snapshot anvil-network hardhat-network forge-deploy-to-local-network forge-deploy-to-btp-network forge-script-to-anvil-network forge-script-to-btp-network help subgraph clear-anvil-port
 
 CURRENT_TIMESTAMP := $(shell date +%s)
+SUBGRAPH_DESCRIPTION := "Solidity Empty"
+SUBGRAPH_NAME := "solidity-empty"
 
 hardhat-build:
 	@echo "Building with Hardhat..."
@@ -69,6 +71,29 @@ hardhat-deploy-to-btp-network:
 	@eval $$(curl -H "x-auth-token: $${BTP_SERVICE_TOKEN}" -s $${BTP_CLUSTER_MANAGER_URL}/ide/foundry/$${BTP_SCS_ID}/env | sed 's/^/export /'); \
 		npx hardhat ignition deploy ignition/modules/Counter.ts --network btp | tee deployments/hardhat-deploy-to-btp-network.$(CURRENT_TIMESTAMP).txt;
 	@echo "The address of the deployed contract is stored for your reference in deployments/hardhat-deploy-to-btp-network.$(CURRENT_TIMESTAMP).txt"
+
+subgraph:
+	@echo "Deploying the subgraph..."
+	@rm -Rf subgraph/subgraph.config.json
+	@DEPLOYED_ADDRESS=$$(grep "Deployed to:" deployment.txt | awk '{print $$3}') TRANSACTION_HASH=$$(grep "Transaction hash:" deployment.txt | awk '{print $$3}') BLOCK_NUMBER=$$(cast receipt --rpc-url btp $${TRANSACTION_HASH} | grep "blockNumber" | awk '{print $$2}' | sed '2d') yq e -p=json -o=json '.datasources[0].address = env(DEPLOYED_ADDRESS) | .datasources[0].startBlock = env(BLOCK_NUMBER) | .chain = env(BTP_NODE_UNIQUE_NAME)' subgraph/subgraph.config.template.json > subgraph/subgraph.config.json
+	@cd subgraph && npx graph-compiler --config subgraph.config.json --include node_modules/@openzeppelin/subgraphs/src/datasources subgraph/datasources --export-schema --export-subgraph
+	@cd subgraph && yq e '.specVersion = "0.0.4"' -i generated/$(SUBGRAPH_NAME).subgraph.yaml
+	@cd subgraph && yq e '.description = "$(SUBGRAPH_DESCRIPTION)"' -i generated/$(SUBGRAPH_NAME).subgraph.yaml
+	@cd subgraph && yq e '.repository = "https://github.com/settlemint/solidity-token-erc20"' -i generated/$(SUBGRAPH_NAME).subgraph.yaml
+	@cd subgraph && yq e '.features = ["nonFatalErrors", "fullTextSearch", "ipfsOnEthereumContracts"]' -i generated/$(SUBGRAPH_NAME).subgraph.yaml
+	@cd subgraph && npx graph codegen generated/$(SUBGRAPH_NAME).subgraph.yaml
+	@cd subgraph && npx graph build generated/$(SUBGRAPH_NAME).subgraph.yaml
+	@eval $$(curl -H "x-auth-token: $${BTP_SERVICE_TOKEN}" -s $${BTP_CLUSTER_MANAGER_URL}/ide/foundry/$${BTP_SCS_ID}/env | sed 's/^/export /'); \
+	if [ -z "$${BTP_MIDDLEWARE}" ]; then \
+		if [ -z "$${ANVIL_TESTS_PRIVATE_KEY}" ]; then \
+			echo "\033[1;31mERROR: You have not launched a graph middleware for this smart contract set, aborting...\033[0m"; \
+			exit 1; \
+		fi \
+	else \
+		cd subgraph; \
+		npx graph create --node $${BTP_MIDDLEWARE} $${BTP_SCS_NAME}; \
+		npx graph deploy --version-label v1.0.$$(date +%s) --node $${BTP_MIDDLEWARE} --ipfs $${BTP_IPFS}/api/v0 $${BTP_SCS_NAME} generated/$(SUBGRAPH_NAME).subgraph.yaml; \
+	fi
 
 help:
 	@echo "Forge help..."

@@ -1,5 +1,5 @@
 import { Address } from "@graphprotocol/graph-ts";
-import { CounterContract } from "../generated/schema";
+import { CounterContract } from "../../generated/schema";
 import { fetchAccount } from "./account";
 
 export function fetchCounter(address: Address): CounterContract {
