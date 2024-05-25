@@ -4,7 +4,7 @@
     {
       "label": "Foundry - Build",
       "type": "shell",
-      "command": "make forge-build",
+      "command": "btp-scs foundry build",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -14,105 +14,72 @@
     {
       "label": "Hardhat - Build",
       "type": "shell",
-      "command": "make hardhat-build",
+      "command": "btp-scs hardhat build",
       "group": {
         "kind": "build",
-        "isDefault": true
+        "isDefault": false
       },
       "problemMatcher": []
     },
     {
       "label": "Foundry - Test",
       "type": "shell",
-      "command": "make forge-test",
+      "command": "btp-scs foundry test",
       "group": "test",
       "problemMatcher": []
     },
     {
       "label": "Hardhat - Test",
       "type": "shell",
-      "command": "make hardhat-test",
+      "command": "btp-scs hardhat test",
       "group": "test",
       "problemMatcher": []
     },
     {
       "label": "Foundry - Format",
       "type": "shell",
-      "command": "make forge-format",
+      "command": "btp-scs foundry format",
       "problemMatcher": []
     },
     {
       "label": "Foundry - Start network",
       "type": "shell",
-      "command": "make anvil-network",
-      "problemMatcher": []
+      "command": "btp-scs foundry network",
+      "problemMatcher": [],
+      "isBackground": true
     },
     {
       "label": "Hardhat - Start network",
       "type": "shell",
-      "command": "make hardhat-network",
-      "problemMatcher": []
-    },
-    {
-      "label": "Foundry - Deploy to local network",
-      "type": "shell",
-      "command": "make forge-deploy-to-local-network",
-      "problemMatcher": []
+      "command": "btp-scs hardhat network",
+      "problemMatcher": [],
+      "isBackground": true,
     },
     {
       "label": "Hardhat - Deploy to local network",
       "type": "shell",
-      "command": "make hardhat-deploy-to-local-network",
-      "problemMatcher": []
-    },
-    {
-      "label": "Foundry - Deploy to platform network",
-      "type": "shell",
-      "command": "EXTRA_ARGS=\"${input:extra-deployment-verify} ${input:extra-deployment-other}\" make forge-deploy-to-btp-network",
+      "command": "btp-scs hardhat deploy local -m ${input:deployment-module}",
       "problemMatcher": []
     },
     {
       "label": "Hardhat - Deploy to platform network",
       "type": "shell",
-      "command": "make hardhat-deploy-to-btp-network",
+      "command": "btp-scs hardhat deploy remote -m ${input:deployment-module}",
+      "problemMatcher": []
+    },
+    {
+      "label": "The Graph - Deploy or update the subgraph",
+      "type": "shell",
+      "command": "btp-scs subgraph deploy",
       "problemMatcher": []
     }
   ],
   "inputs": [
     {
-      "id": "contract-address",
-      "description": "Contract address",
-      "type": "promptString"
-    },
-    {
-      "id": "extra-deployment-verify",
-      "description": "Extra deployment options?",
-      "default": "",
-      "type": "pickString",
-      "options": [
-        "",
-        "--verify --verifier sourcify",
-        "--verify --verifier etherscan --etherscan-api-key ${ETHERSCAN_API_KEY}"
-      ]
-    },
-    {
-      "id": "extra-deployment-other",
-      "description": "Other extra deployment options?",
-      "default": "",
-      "type": "promptString"
-    },
-    {
-      "id": "extra-script-broadcast",
-      "description": "Broadcast?",
-      "default": "",
-      "type": "pickString",
-      "options": ["", "--broadcast"]
-    },
-    {
-      "id": "extra-script-other",
-      "description": "Other extra script options?",
-      "default": "",
-      "type": "promptString"
+      "id": "deployment-module",
+      "description": "Hardhat Ignition Module",
+      "type": "promptString",
+      "default": "ignition/modules/Counter.ts"
     }
   ]
 }
