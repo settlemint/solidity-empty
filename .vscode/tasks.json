@@ -64,7 +64,7 @@
     {
       "label": "Hardhat - Deploy to platform network",
       "type": "shell",
-      "command": "eval $(curl -H \"x-auth-token: ${BTP_SERVICE_TOKEN}\" -s ${BTP_CLUSTER_MANAGER_URL}/ide/foundry/$${BTP_SCS_ID}/env | sed 's/^/export /') && btp-scs hardhat deploy remote -m ${input:deployment-module}",
+      "command": "btp-scs hardhat deploy remote -m ${input:deployment-module}",
       "problemMatcher": []
     },
     {
