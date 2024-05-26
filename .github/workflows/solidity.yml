@@ -38,5 +38,5 @@ jobs:
     with:
       docker-image-name: solidity-empty
       runs-on: foundry
-      ignition-modules: "ignition/modules/Counter.ts"
+      ignition-module: "ignition/modules/Counter.ts"
       subgraph-contract-address-key: "CounterModule#Counter"
