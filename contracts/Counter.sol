@@ -2,6 +2,8 @@
 pragma solidity 0.8.26;
 
 contract Counter {
+    event CounterIncremented(uint256 indexed newValue);
+
     uint256 public number;
 
     function setNumber(uint256 newNumber) public {
@@ -10,5 +12,6 @@ contract Counter {
 
     function increment() public {
         number++;
+        emit CounterIncremented(number);
     }
 }
