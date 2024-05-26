@@ -37,6 +37,6 @@ jobs:
       TOKEN: ${{ secrets.GITHUB_TOKEN }}
     with:
       docker-image-name: solidity-empty
-      runs-on: foundry
+      runs-on: solidity-empty
       ignition-module: "ignition/modules/Counter.ts"
       subgraph-contract-address-key: "CounterModule#Counter"
