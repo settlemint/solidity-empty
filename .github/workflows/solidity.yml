@@ -35,8 +35,8 @@ jobs:
     uses: settlemint/smart-contracts-actions/.github/workflows/solidity.yml@main
     secrets:
       TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      ANVIL_TESTS_PRIVATE_KEY: ${{ secrets.ANVIL_TESTS_PRIVATE_KEY }}
-      AIKIDO_SECRET_KEY: ${{ secrets.AIKIDO_SECRET_KEY }}
     with:
       docker-image-name: solidity-empty
       runs-on: foundry
+      ignition-module: "ignition/modules/Counter.ts"
+      subgraph-contract-address-key: "CounterModule#Counter"
