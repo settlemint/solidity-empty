@@ -1,6 +1,6 @@
-# ERC20
+# Empty
 
-A basic ERC20 token contract.
+An empty smart contract set with an example contract
 
 ## Get started
 
@@ -9,7 +9,7 @@ Launch this smart contract set in the SettleMint Blockchain Transformation platf
 If you want to use it separately, bootstrap a new project using
 
 ```shell
-forge init my-erc20-token --template settlemint/solidity-token-erc20
+forge init my-contract --template settlemint/solidity-empty
 ```
 
 ## DX: Foundry & Hardhat hybrid
