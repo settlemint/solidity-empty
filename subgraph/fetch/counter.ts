@@ -1,6 +1,6 @@
-import { Address } from "@graphprotocol/graph-ts";
-import { CounterContract } from "../../generated/schema";
-import { fetchAccount } from "./account";
+import { Address, BigInt } from '@graphprotocol/graph-ts';
+import { CounterContract } from '../../generated/schema';
+import { fetchAccount } from './account';
 
 export function fetchCounter(address: Address): CounterContract {
   const account = fetchAccount(address);
@@ -10,6 +10,7 @@ export function fetchCounter(address: Address): CounterContract {
     contract = new CounterContract(account.id.toHex());
     contract.asAccount = account.id;
     account.asCounter = contract.id;
+    contract.currentValue = BigInt.fromString('0');
 
     contract.save();
     account.save();

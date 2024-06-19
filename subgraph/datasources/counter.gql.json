@@ -4,14 +4,23 @@
     "fields": [
       { "name": "id", "type": "Bytes!" },
       { "name": "asCounter", "type": "CounterContract" },
-      { "name": "CounterIncrementedEvent", "type": "CounterIncremented!" }
+      {
+        "name": "CounterIncrementedEvents",
+        "type": "CounterIncremented!",
+        "derived": "emitter"
+      }
     ]
   },
   {
     "name": "CounterContract",
     "fields": [
       { "name": "asAccount", "type": "Account!" },
-      { "name": "currentValue", "type": "BigInt!" }
+      { "name": "currentValue", "type": "BigInt!" },
+      {
+        "name": "CounterIncrementedEvent",
+        "type": "CounterIncremented!",
+        "derived": "contract"
+      }
     ]
   },
   {
