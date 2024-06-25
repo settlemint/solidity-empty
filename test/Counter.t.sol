@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.26;
+pragma solidity ^0.8.24;
 
-import { Test, console } from "forge-std/Test.sol";
-import { Counter } from "../contracts/Counter.sol";
+import {Test, console} from "forge-std/Test.sol";
+import {Counter} from "../contracts/Counter.sol";
 
 contract CounterTest is Test {
     Counter public counter;

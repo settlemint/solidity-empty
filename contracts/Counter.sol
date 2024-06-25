@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.26;
+pragma solidity ^0.8.24;
 
 contract Counter {
     event CounterIncremented(uint256 indexed newValue);
@@ -11,7 +11,7 @@ contract Counter {
     }
 
     function increment() public {
-        number++;
+        ++number;
         emit CounterIncremented(number);
     }
 }
