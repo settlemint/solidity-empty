@@ -1,6 +1,8 @@
+![OG](OG_Solidity.jpg)
+
 # Empty
 
-An empty smart contract set with an example contract
+An empty smart contract set with an example contract.
 
 ## Get started
 
@@ -33,78 +35,82 @@ Hardhat consists of:
 
 ## Documentation
 
-- https://console.settlemint.com/documentation/docs/using-platform/integrated-development-environment/
-- https://book.getfoundry.sh/
+- <https://console.settlemint.com/documentation/docs/using-platform/integrated-development-environment/>
+- <https://book.getfoundry.sh/>
 
 ## Usage
 
 ### Build
 
+You can either use Forge:
+
 ```shell
-$ forge build
+btp-scs foundry build
+```
+
+or Hardhat:
+
+```shell
+btp-scs hardhat build
 ```
 
 ### Test
 
+With Forge:
+
 ```shell
-$ forge test
+btp-scs foundry test
+```
+
+or Hardhat:
+
+```shell
+btp-scs hardhat test
 ```
 
 ### Format
 
+To format your contracts, run
+
 ```shell
-$ forge fmt
+btp-scs foundry format
 ```
 
-### Gas Snapshots
+### Deploy to local network
+
+You can deploy your contracts to a local network. First, run
 
 ```shell
-$ forge snapshot
+btp-scs hardhat network
 ```
 
-### Anvil
-
-Anvil is a local development node, open a terminal in the IDE and launch anvil. You can then deploy to it using `make deploy-anvil`
+then:
 
 ```shell
-$ anvil
+btp-scs hardhat deploy local -m ignition/modules/main.ts
 ```
 
-### Deploy
+### Deploy to platform network
 
-Deploy to a local anvil node:
-
-```shell
-$ btp-scs hardhat deploy local -m ignition/modules/Counter.ts
-```
-
-When prompted to enter a private key, copy one of the private keys shown in the terminal when you start the anvil node.
-
-Deploy to the connected platform node:
+You can also deploy your contracts to the network running on the platform by executing the following command:
 
 ```shell
-$ btp-scs hardhat deploy remote -m ignition/modules/Counter.ts
-```
-
-If you have a private key activated on the connected node, it will be used automatically. Else, you will be prompted to enter a private key. You can copy-paste a private key from the platform.
-
-### Cast
-
-```shell
-$ cast <subcommand>
+btp-scs hardhat deploy remote -m ignition/modules/main.ts
 ```
 
 ### Deploy your subgraph
 
+To index your smart contract events, use The Graph middleware.
+First, edit `subgraph.config.json` to set the addresses of your smart contracts. You can find them in the deployment folder created under `ignation`. Then, run:
+
 ```shell
-$ btp-scs subgraph deploy
+btp-scs subgraph deploy
 ```
 
 ### Help
 
+To get info about the tasks, run:
+
 ```shell
-$ btp-scs --help
-$ forge --help
-$ anvil --help
-$ cast --help
+btp-scs --help
 ```
