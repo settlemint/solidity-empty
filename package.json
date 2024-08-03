@@ -17,7 +17,7 @@
     "@nomicfoundation/hardhat-toolbox-viem": "3.0.0",
     "@nomiclabs/hardhat-solhint": "4.0.0",
     "hardhat": "2.22.7",
-    "solhint": "5.0.2",
+    "solhint": "5.0.3",
     "@openzeppelin/subgraphs": "0.1.8-5"
   },
   "overrides": {
