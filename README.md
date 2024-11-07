@@ -21,7 +21,7 @@ forge init my-project --template settlemint/solidity-empty
 Or if you want to use this set as a dependency of your own,
 
 ```shell
-npm install @settlemint/solidity-empty
+bun install @settlemint/solidity-empty
 ```
 
 ## DX: Foundry & Hardhat hybrid
