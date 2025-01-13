@@ -53,5 +53,8 @@
     "keccak",
     "protobufjs",
     "secp256k1"
-  ]
+  ],
+  "devDependencies": {
+    "@settlemint/sdk-cli": "1.0.0"
+  }
 }
